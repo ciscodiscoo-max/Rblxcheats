@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    body { background-color: #000; color: #fff; font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    button { margin-top: 20px; padding: 10px 20px; background-color: #333; border: none; border-radius: 5px; color: #fff; cursor: pointer; transition: background-color 0.3s; }
+    button:hover { background-color: #555; }
+  </style>
+</head>
+<body>
+
+<h1>Welcome, <span id="username">Loading...</span>!</h1>
+<p>You are now logged in.</p>
+<button onclick="logout()">Log Out</button>
+
+<script>
+window.onload = function() {
+  if (localStorage.getItem('loggedIn') !== 'true') {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const user = localStorage.getItem('currentUser');
+  document.getElementById('username').textContent = user ? user : 'User';
+};
+
+function logout() {
+  localStorage.removeItem('loggedIn');
+  localStorage.removeItem('currentUser');
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
